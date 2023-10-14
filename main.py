@@ -1,10 +1,4 @@
-from tasks import process_image
-import os
+from tasks import add_numbers
 
-# Получаем список всех файлов в папке "foto"
-image_folder = 'foto'
-images = [os.path.join(image_folder, f) for f in os.listdir(image_folder) if f.endswith('.jpg')]
-
-# Отправляем задачи на обработку
-for image_path in images:
-    process_image.delay(image_path)
+result = add_numbers.apply_async(args=[1, 5])
+result.get()
