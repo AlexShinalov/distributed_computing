@@ -1,7 +1,10 @@
 from tasks import process_image
+import os
 
-input_image_path = "C:/Users/snw12/PycharmProjects/raspt_v1/foto"
-output_image_path = "C:/Users/snw12/PycharmProjects/raspt_v1/image"
+# Получаем список всех файлов в папке "foto"
+image_folder = 'foto'
+images = [os.path.join(image_folder, f) for f in os.listdir(image_folder) if f.endswith('.jpg')]
 
-result = process_image.apply_async(args=[input_image_path, output_image_path], queue='default', routing_key='default')
-result.get()  # Получаем результат, если это необходимо
+# Отправляем задачи на обработку
+for image_path in images:
+    process_image.delay(image_path)
