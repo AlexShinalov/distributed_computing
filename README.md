@@ -1,14 +1,30 @@
-﻿# distributed_computing /
-библиотеки celery, os 
-устновка pip install celery, pip install importlib-metada (можно установить через PyCharm: settings -> Py interpreter -> + -> добавляем две библиотеки через поиск)
-Брокер - rabbitMq, config-файл будет добавлен.
-команды для брокера: rabbitmq-server start(sudo service rabbitmq-server restart), rabbitmq-server restart, rabbitmq-diagnostics status
-Для запуска приложения:
-  На воркере: celery -A celery worker --loglevel=info
-  На планировщике: celery -A celery beat --scheduler django_celery_beat.schedulers:DatabaseScheduler --detach, после запуск main.py
+﻿# distributed_computing  
+## Install dependencies
+```bash
+pip install celery  
+pip install importlib-metada
+pip install opencv-python
+```
+## RabitMQ
+```bash
+sudo service rabbitmq-server start
+sudo service rabbitmq-server restart  
+sudo service rabbitmq-diagnostics status
+```
+## How to start
+On worker: 
+```bash
+-celery -A tasks worker -Q noise -n worker1 -l info
+```
+On master:  
+```bash
+python3 main.py
+```
 
-Полезные команды:
-ipaddr - просмотр ip (на планироващике)
+## Check local ip:
+```bash
+ip addr
+```
 
 
 
