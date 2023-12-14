@@ -1,4 +1,4 @@
-﻿# distributed_computing  
+﻿# distributed computing powered by Celary and Flask
 ## Install dependencies
 ```bash
 pip install celery  
